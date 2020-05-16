@@ -93,7 +93,7 @@ let view (model: Model) (dispatch : Dispatch<Msg>) =
             ]
             autocomplete { Search=searchWikipedia; Dispatch = Select >> dispatch; DebounceTimeout=750 }
 
-            div [ Style [ MarginTop "30px" ]] [
+            span [ Style [ MarginLeft "30px" ]] [
                 match model.Selection with
                 | Some selection ->
                     yield str "Selection: "

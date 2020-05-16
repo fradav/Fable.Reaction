@@ -1,9 +1,8 @@
 group Client
 
 FSharp.Core
-Fable.Fetch
 Fable.Core
 Fable.Reaction
 Feliz
 Feliz.Bulma
-Thoth.Json
+Thoth.Fetch

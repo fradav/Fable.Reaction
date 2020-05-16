@@ -185,8 +185,8 @@ let viewStatus dispatch model =
                 Html.tr [
                     Html.td "Letters"
                     Html.td [
-                        Bulma.checkboxLabel [
-                            Bulma.checkboxInput [
+                        Bulma.label [
+                            Bulma.input.checkbox [
                                 prop.isChecked (letterSubscription model)
                                 prop.id "letters"
                                 prop.onChange (fun (_: bool) -> dispatch ToggleLetters)
@@ -198,8 +198,8 @@ let viewStatus dispatch model =
                 Html.tr [
                     Html.td "Letters (string and position) over Websockets"
                     Html.td [
-                        Bulma.checkboxLabel [
-                            Bulma.checkboxInput [
+                        Bulma.label [
+                            Bulma.input.checkbox [
                                 prop.isChecked (letterSubscriptionOverWebsockets model)
                                 prop.id "remoteLetters"
                                 prop.onChange (fun (_: bool) -> dispatch ToggleRemoteLetters)
@@ -218,8 +218,8 @@ let viewLetterString letterString dispatch =
             Html.text letterString
             Html.text " "
 
-            Bulma.button [
-                button.isPrimary
+            Bulma.buttons [
+                color.isPrimary
                 prop.onClick (fun _ -> dispatch EditLetterStringRequested)
                 prop.text "Edit"
             ]
@@ -227,20 +227,20 @@ let viewLetterString letterString dispatch =
 
     | Edit letterString ->
         Html.div [
-            Bulma.field [
+            Bulma.fieldBody [
                 field.isGrouped
                 prop.children [
-                    Bulma.control [
-                        Bulma.textInput [
+                    Bulma.control.div [
+                        Bulma.input.text [
                             prop.placeholder "Magic String"
                             prop.defaultValue letterString
                             prop.onChange (fun (event: Browser.Types.Event) ->  !!event.target?value |> LetterStringEdited |> dispatch)
                         ]
                     ]
 
-                    Bulma.control [
-                        Bulma.button [
-                            button.isPrimary
+                    Bulma.control.div [
+                        Bulma.buttons [
+                            color.isPrimary
                             prop.onClick (fun _ -> dispatch <| EditLetterStringDone letterString)
                             prop.text "Submit"
                         ]
@@ -255,8 +255,8 @@ let view model dispatch =
         prop.style [ style.border(1, borderStyle.dashed, color.black); style.margin 20; style.padding 20 ]
         prop.children [
 
-            Bulma.title3 "Magic Component"
-            Bulma.subtitle4 "Magic String over websockets (when activated)"
+            Bulma.title.h3 "Magic Component"
+            Bulma.subtitle.h4 "Magic String over websockets (when activated)"
             Bulma.columns [
                 Bulma.column [
                     viewLetterString model.LetterString dispatch
